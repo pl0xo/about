@@ -1,0 +1,42 @@
+<!DOCTYPE html!>
+<html>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+
+p {
+font-family: 'Oswald';
+font-size: 40px;
+}
+
+#example .new { opacity: 0; }
+#example { padding:100px; width:350px; display:none; }
+#example .div_opacity {
+  -webkit-transition: opacity .2s ease-in-out;
+  -moz-transition: opacity .2s ease-in-out;
+  -ms-transition: opacity .2s ease-in-out;
+  -o-transition: opacity .2s ease-in-out;
+  transition: opacity .2s ease-in-out;
+  opacity: 1;
+}
+</style>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<div id="example">
+<p>Привет! Добро пожаловать на сайт сделанный за 5 секунд. Я расскажу немного о себе. Меня зовут ##########, мне ## лет. Мой ник: Devvit. Я люблю JavaScript. Скоро Я создам своего дискорд бота на Discord.JS, но пока нет времени. Спасибо что прочитали моё сообщение.
+</div>
+
+<script>
+$.fn.animate_Text = function() {
+  var string = this.text();
+  return this.each(function(){
+   var $this = $(this);
+   $this.html(string.replace(/./g, '<span class="new">$&</span>'));
+   $this.find('span.new').each(function(i, el){
+    setTimeout(function(){ $(el).addClass('div_opacity'); }, 20 * i);
+   });
+  });
+ };
+ $('#example').show();
+ $('#example').animate_Text();
+</script>
